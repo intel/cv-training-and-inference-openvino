@@ -192,10 +192,10 @@ b. [OpenVINO™ Sample Notebooks](https://github.com/openvinotoolkit/openvino_no
 
 
 
-## Option 2: Optimization and inferencing with Helm Chart using Kubernetes.
+## Option 2: Optimization for inferencing with Helm Chart using Kubernetes.
 This section of the document will guide you to deploy the application to a **K3S cluster** with **Helm chart** to perform optimization, Post-Training Optimization, benchmark and inference over models with different precisions.
 
-The directory `onnx-to-ir-optimization/` from this repository is a Helm chart and has several sub-charts as dependencies to deploy the application to a kubernetes cluster. Both parent chart and sub-chart can run individually and also together.
+The directory `./onnx-to-ir-optimization/` from this repository is a Helm chart and has several sub-charts as dependencies to deploy the application to a kubernetes cluster. Both parent chart and sub-chart can run individually and also together.
 
 ### Prerequisites:
 Following are the prerequisites to deploy the Helm chart.
@@ -274,10 +274,10 @@ Run the commands below from the `./onnx-to-ir-optimization/` directory.
     ```bash
     helm install release-name-1 --set performance-benchmark.enabled=false --set sample-inference.enabled=false --set post-optimization.enabled=true .
     ```
-    This will deploy two different pods to the k3s cluster. The status of each pod can be checked using `kubectl get pods` command. Upon successful completion, the status of both the pods will be changed to 'completed'.
-    [click here for FP32 ONNX model format to FP32 OpenVINO format model output info](https://github.com/intel/cv-training-and-inference-openvino/blob/main/gaudi-segmentation-unet-ptq/inference/onnx-to-ir-optimization#use-openvinos-model-optimizermo-to-convert-the-trained-onnx-fp32-model-to-openvinos-fp32-intermediate-representationir-format)
+    This will deploy two different pods to the k3s cluster. The status of each pod can be checked using `kubectl get pods` command. Upon successful completion, the status of both the pods will be changed to 'completed'. <br />
+    [click here for FP32 ONNX model format to FP32 OpenVINO format model output info](https://github.com/intel/cv-training-and-inference-openvino/tree/main/gaudi-segmentation-unet-ptq/inference/onnx-to-ir-optimization#use-openvino-model-optimizermo-to-convert-the-trained-onnx-fp32-model-to-fp32-openvino-or-intermediate-representationir-format) <br />
     
-    [click here for FP32 OpenVINO format model to INT8 OpenVINO format model output info](https://github.com/intel/cv-training-and-inference-openvino/blob/main/gaudi-segmentation-unet-ptq/inference/onnx-to-ir-optimization#using-openvino-pot-default-quantization-algorithm-to-quantize-the-fp32-ir-model-into-int8-ir-model)
+    [click here for FP32 OpenVINO format model to INT8 OpenVINO format model output info](https://github.com/intel/cv-training-and-inference-openvino/tree/main/gaudi-segmentation-unet-ptq/inference/onnx-to-ir-optimization#use-openvino-post-training-optimization-tool-pot-benchmark_app-and-sample-inference) <br />
 
 **Step 2:** FP32 OpenVINO™ format model files are now available from the above step, we can now deploy one of the sub-charts to get inference numbers using a U-Net 2D sample.
 ```bash
@@ -285,8 +285,8 @@ helm install release-name-2  --set env.PRECISION=FP32 ./charts/sample-inference/
 ```
 
 Here we are deploying an individual sub-chart of parent chart to perform inference with the FP32 model.
-This will deploy a single pod to the k3s cluster.
-[click here for FP32 OpenVINO format sample inference output info](https://github.com/intel/cv-training-and-inference-openvino/blob/main/gaudi-segmentation-unet-ptq/inference/onnx-to-ir-optimization#sample-inference-with-fp32-ir-model-using-openvino-sync-apis)
+This will deploy a single pod to the k3s cluster. <br />
+[click here for FP32 OpenVINO format sample inference output info](https://github.com/intel/cv-training-and-inference-openvino/tree/main/gaudi-segmentation-unet-ptq/inference/onnx-to-ir-optimization#sample-inference-with-fp32-openvino-format-model-using-openvino-sync-api-20) <br />
 
 **Step 3:** Now deploy a different sub-chart to perform the benchmarking with the FP32 OpenVINO™ format model.
 1.  Before that, make sure to update the following contents to values.yaml file present in `onnx-to-ir-optimization/charts/performance-benchmark/` directory.
@@ -302,8 +302,8 @@ This will deploy a single pod to the k3s cluster.
     ```bash
     helm install release-name-3 ./charts/performance-benchmark/
     ````
-    This will again deploy a single pod to the k3s cluster.
-[click here for FP32 OpenVINO format benchmarking output info](https://github.com/intel/cv-training-and-inference-openvino/blob/main/gaudi-segmentation-unet-ptq/inference/onnx-to-ir-optimization#sample-inference-with-fp32-ir-model-using-openvino-sync-apis)
+    This will again deploy a single pod to the k3s cluster. <br />
+[click here for FP32 OpenVINO format benchmarking output info](https://github.com/intel/cv-training-and-inference-openvino/tree/main/gaudi-segmentation-unet-ptq/inference/onnx-to-ir-optimization#using-the-benchmark_app-tool-from-openvino-to-measure-the-performance-of-the-fp32-openvino-format-model) <br />
 
 **Step 4:** This step is similar to step two. The only difference is the model precision. Since INT8 OpenVINO format files were generated from our first deployment. Now, we can deploy the same sub-chart used in step two with INT8 precision to get INT8 inference numbers using a U-Net 2D sample.
 
@@ -311,9 +311,9 @@ This will deploy a single pod to the k3s cluster.
 helm install release-name-4  --set env.PRECISION=INT8 ./charts/sample-inference/
 ```
 
-This will again deploy a single pod to the k3s cluster similar to step two.
+This will again deploy a single pod to the k3s cluster similar to step two. <br />
 
-[click here for INT8 OpenVINO format sample inference output info](https://github.com/intel/cv-training-and-inference-openvino/blob/main/gaudi-segmentation-unet-ptq/inference/onnx-to-ir-optimization#sample-inference-with-int8-ir-model-using-openvino-apis)
+[click here for INT8 OpenVINO format sample inference output info](https://github.com/intel/cv-training-and-inference-openvino/tree/main/gaudi-segmentation-unet-ptq/inference/onnx-to-ir-optimization#sample-inference-with-int8-openvino-format-model-using-openvino-api-20) <br />
 
 **Step 5:** Similar to step three, here we will deploy the same sub-chart used in step three to perform INT8 benchmark.
 1.  Make sure to update the following contents to values.yaml file present in `onnx-to-ir-optimization/charts/performance-benchmark/` directory.
@@ -330,9 +330,9 @@ This will again deploy a single pod to the k3s cluster similar to step two.
     helm install release-name-5 ./charts/performance-benchmark/
     ````
 
-    This will again deploy a single pod to the k3s cluster similar to step three.
+    This will again deploy a single pod to the k3s cluster similar to step three. <br />
 
-    [click here for INT8 OpenVINO format benchmarking output info](https://github.com/intel/cv-training-and-inference-openvino/blob/main/gaudi-segmentation-unet-ptq/inference/onnx-to-ir-optimization#using-the-benchmark_app-tool-from-openvino-toolkit-ro-measure-the-performance-of-the-int8-ir-model)
+    [click here for INT8 OpenVINO format benchmarking output info](https://github.com/intel/cv-training-and-inference-openvino/tree/main/gaudi-segmentation-unet-ptq/inference/onnx-to-ir-optimization#using-the-benchmark_app-tool-from-openvino-to-measure-the-performance-of-the-int8-openvino-format-model) <br />
 
 #### Summary:
 The place holder `<release-name-n>` used in the above commands could be any string. It is required to create an instance of the chart. To list out all the instances from your chart run:
@@ -412,7 +412,7 @@ Uninstalling k3s: (If required)
 ```
 /usr/local/bin/k3s-uninstall.sh
 ```
-[Read more here](https://rancher.com/docs/k3s/latest/en/installation/uninstall/#:~:text=If%20you%20installed%20K3s%20using,installation%20script%20with%20different%20flags) <br />
+[Read more from here](https://rancher.com/docs/k3s/latest/en/installation/uninstall/#:~:text=If%20you%20installed%20K3s%20using,installation%20script%20with%20different%20flags) <br />
 
 
 ### References
