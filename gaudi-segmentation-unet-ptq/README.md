@@ -37,7 +37,7 @@ This AI workflow demonstartes the following: <br />
 #### Option 1: Optimization for inferencing using Docker containers.
 [GoTo Docker containers](https://github.com/intel/cv-training-and-inference-openvino/tree/main/gaudi-segmentation-unet-ptq/inference/onnx-to-ir-optimization#option-1-optimization-for-inferencing-using-docker-containers)
 #### Option 2: Optimization for inferencing with Helm Chart using Kubernetes.
-[GoTo Helm chart](https://github.com/intel/cv-training-and-inference-openvino/tree/main/gaudi-segmentation-unet-ptq/inference/onnx-to-ir-optimization#option-2-optimization-and-inferencing-with-helm-chart-using-kubernetes)
+[GoTo Helm chart](https://github.com/intel/cv-training-and-inference-openvino/tree/main/gaudi-segmentation-unet-ptq/inference/onnx-to-ir-optimization#option-2-optimization-for-inferencing-with-helm-chart-using-kubernetes)
 
 ## References
 [HabanaAI/Model-References](https://github.com/HabanaAI/Model-References/tree/master/PyTorch/computer_vision/segmentation/Unet) <br />
