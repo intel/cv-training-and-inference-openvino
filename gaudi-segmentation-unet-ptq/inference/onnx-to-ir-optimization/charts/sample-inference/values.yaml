@@ -1,0 +1,18 @@
+# Default values for inference.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+global:
+  image:
+    repository: openvino/ubuntu20_dev
+    pullPolicy: Always
+    tag: "2022.2.0"
+
+env:
+  OPTIMIZATION: False
+  PRECISION: FP32
+
+mountpath:
+  irmodelsvolume: <absolute-path-of-chart-directory>/ir_model
+  scriptsvolume: <absolute-path-of-chart-directory>/scripts
+  datasourcevolume: <absolute-path-of-chart-directory>/data_source

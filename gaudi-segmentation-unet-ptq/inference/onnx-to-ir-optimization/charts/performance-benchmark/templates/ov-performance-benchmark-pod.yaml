@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ include "performance-benchmark.fullname" . }}
+  labels:
+    {{- include "performance-benchmark.labels" . | nindent 4 }}
+spec:
+  restartPolicy: OnFailure
+  containers:
+    - name: {{ .Chart.Name }}
+      image: "{{ .Values.global.image.repository }}:{{ .Values.global.image.tag }}"
+      imagePullPolicy: {{ .Values.global.image.pullPolicy }}
+          
+      command: 
+        - benchmark_app
+      args:
+        - '-hint'
+        - 'throughput'
+        - '-d'
+        - 'CPU'
+        - '-m'
+        - {{ .Values.arguments.modelPath }}
+        - '-report_type'
+        - 'no_counters'
+        - '-report_folder'
+        - {{ .Values.arguments.reportPath }}
+        - '-dump_config'
+        - {{ .Values.arguments.configPath }}
+
+      volumeMounts:
+        - name: reports
+          mountPath: /home/Optimization/reports
+        - name: ir-model
+          mountPath: /home/Optimization/ir_model
+  volumes:
+    - name: reports
+      hostPath:
+         path: {{.Values.mountpath.reportsvolume}}
+    - name: ir-model
+      hostPath:
+         path: {{.Values.mountpath.irmodelsvolume}}

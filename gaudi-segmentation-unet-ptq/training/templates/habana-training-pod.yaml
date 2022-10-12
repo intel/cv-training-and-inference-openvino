@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ include "training.fullname" . }}
+  labels:
+    {{- include "training.labels" . | nindent 4 }}
+spec:
+  restartPolicy: OnFailure
+  containers:
+    - name: {{ .Chart.Name }}
+      image: "{{ .Values.image.registry }}/{{ .Values.image.name }}"
+      imagePullPolicy: {{ .Values.image.pullPolicy }}
+      command: ['/bin/bash','/train/scripts/config_run.sh']
+      resources:
+        limits:
+          habana.ai/gaudi: 8
+          hugepages-2Mi: "30000Mi"
+          memory: 500Gi
+        requests:
+          habana.ai/gaudi: 8
+          hugepages-2Mi: "30000Mi"
+          memory: 500Gi
+      securityContext:
+        capabilities:
+          add: ["SYS_RAWIO"]
+      volumeMounts:
+        - name: train-path
+          mountPath: /train
+        - name: data-path
+          mountPath: /data
+        - name: model-path
+          mountPath: /unet
+        - name: results-path
+          mountPath: /tmp/Unet/results/fold_0
+        - name: hugepage-2mi
+          mountPath: /hugepages-2Mi
+  volumes:
+    - name: train-path
+      hostPath:
+         path: {{.Values.mountpath.trainPath}}
+    - name: data-path
+      hostPath:
+         path: {{.Values.mountpath.dataPath}}
+    - name: model-path
+      hostPath:
+         path: {{.Values.mountpath.modelPath}}
+    - name: results-path
+      hostPath:
+         path: {{.Values.mountpath.resultsPath}}
+    - name: hugepage-2mi
+      emptyDir:
+         medium: HugePages-2Mi

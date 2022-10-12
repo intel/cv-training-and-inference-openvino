@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ include "sample-inference.fullname" . }}
+  labels:
+    {{- include "sample-inference.labels" . | nindent 4 }}
+spec:
+  restartPolicy: OnFailure
+  containers:
+    - name: {{ .Chart.Name }}
+      image: "{{ .Values.global.image.repository }}:{{ .Values.global.image.tag }}"
+      imagePullPolicy: {{ .Values.global.image.pullPolicy }}
+          
+      command: ['/bin/bash','/home/Optimization/scripts/run.sh']
+
+      env:
+        {{- range $key, $val := .Values.env }}
+         - name: {{ $key }}
+           value: {{ $val | quote}}
+        {{- end }}
+
+      volumeMounts:
+        - name: ir-model
+          mountPath: /home/Optimization/ir_model
+        - name: scripts
+          mountPath: /home/Optimization/scripts
+        - name: data-source
+          mountPath: /home/Optimization/data_source
+
+  volumes:
+    - name: ir-model
+      hostPath:
+         path: {{.Values.mountpath.irmodelsvolume}}
+    - name: scripts
+      hostPath:
+         path: {{.Values.mountpath.scriptsvolume}}
+    - name: data-source
+      hostPath:
+         path: {{.Values.mountpath.datasourcevolume}}

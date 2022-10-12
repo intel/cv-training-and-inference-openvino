@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ include "post-optimization.fullname" . }}
+  labels:
+    {{- include "post-optimization.labels" . | nindent 4 }}
+spec:
+  restartPolicy: OnFailure
+  containers:
+    - name: {{ .Chart.Name }}
+      image: "{{ .Values.global.image.repository }}:{{ .Values.global.image.tag }}"
+      imagePullPolicy: {{ .Values.global.image.pullPolicy }}
+          
+      command: ['/bin/bash','/home/Optimization/scripts/run.sh']
+      env:
+        {{- range $key, $val := .Values.env }}
+         - name: {{ $key }}
+           value: {{ $val | quote}}
+        {{- end }}
+
+      volumeMounts:
+        - name: onnx-model
+          mountPath: /home/Optimization/onnx_model
+        - name: ir-model
+          mountPath: /home/Optimization/ir_model
+        - name: data-source
+          mountPath: /home/Optimization/data_source
+        - name: scripts
+          mountPath: /home/Optimization/scripts
+  volumes:
+    - name: onnx-model
+      hostPath:
+         path: {{.Values.mountpath.onnxmodelvolume}}
+    - name: ir-model
+      hostPath:
+         path: {{.Values.mountpath.irmodelsvolume}}
+    - name: data-source
+      hostPath:
+         path: {{.Values.mountpath.datasourcevolume}}
+    - name: scripts
+      hostPath:
+         path: {{.Values.mountpath.scriptsvolume}}

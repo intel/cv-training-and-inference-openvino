@@ -1,0 +1,41 @@
+pipeline:
+  - download
+  - preprocess
+  - train: [fp32_8hpu_training]
+  - convert: [onnx, pt]
+
+download:
+  task: "01"
+  results: /data
+
+preprocess:
+  task: "01"
+  dim: "2"
+  data: /data
+  results: /data
+
+train:
+  fp32_8hpu_training:
+    affinity: disabled
+    data: /data/01_2d
+    deep_supervision: ""
+    batch_size: "64"
+    dim: "2"
+    exec_mode: train
+    fold: "0"
+    gpus: "0"
+    hmp-fp32: ./config/ops_fp32_unet.txt
+    hpus: "8"
+    learning_rate: "0.0001"
+    logname: res_log
+    max_epochs: "2"
+    min_epochs: "1"
+    norm: instance
+    num_workers: "8"
+    optimizer: fusedadamw
+    results: /tmp/Unet/results/fold_0
+    run-lazy-mode: "False"
+    save_ckpt: ""
+    seed: "1"
+    task: "01"
+    val_batch_size: "64"

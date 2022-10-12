@@ -1,0 +1,19 @@
+# Default values for inference.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+global:
+  image:
+    repository: openvino/ubuntu20_dev
+    pullPolicy: Always
+    tag: "2022.2.0"
+
+mountpath:
+  reportsvolume: <absolute-path-of-chart-directory>/reports
+  irmodelsvolume: <absolute-path-of-chart-directory>/ir_model
+enabled: true
+
+arguments: 
+  modelPath: '/home/Optimization/ir_model/FP32/unet2d.xml'
+  reportPath: '/home/Optimization/reports/FP32_Reports'
+  configPath: '/home/Optimization/reports/FP32_Reports/benchmark_parameters.json'

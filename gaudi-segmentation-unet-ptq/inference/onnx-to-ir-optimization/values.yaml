@@ -1,0 +1,47 @@
+# Default values for inference.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+global:
+  image:
+    repository: openvino/ubuntu20_dev
+    pullPolicy: Always
+    tag: "2022.2.0"
+
+post-optimization:
+  env:
+    OPTIMIZATION: True
+  mountpath:
+    onnxmodelvolume: <absolute-path-of-chart-directory>/onnx_model
+    irmodelsvolume: <absolute-path-of-chart-directory>/ir_model
+    datasourcevolume: <absolute-path-of-chart-directory>/data_source
+    scriptsvolume: <absolute-path-of-chart-directory>/scripts
+  enabled: true
+
+performance-benchmark:
+  mountpath:
+    reportsvolume: <absolute-path-of-chart-directory>/reports
+    irmodelsvolume: <absolute-path-of-chart-directory>/ir_model
+  enabled: true
+  arguments: 
+    modelPath: '/home/Optimization/ir_model/FP32/unet2d.xml'
+    reportPath: '/home/Optimization/reports/FP32_Reports'
+    configPath: '/home/Optimization/reports/FP32_Reports/benchmark_parameters.json'
+
+sample-inference:
+  env:
+    OPTIMIZATION: False
+    PRECISION: FP32
+
+  mountpath:
+    irmodelsvolume: <absolute-path-of-chart-directory>/ir_model
+    scriptsvolume: <absolute-path-of-chart-directory>/scripts
+    datasourcevolume: <absolute-path-of-chart-directory>/data_source
+
+  enabled: true
+
+mountpath:
+  onnxmodelvolume: <absolute-path-of-chart-directory>/onnx_model
+  irmodelsvolume: <absolute-path-of-chart-directory>/ir_model
