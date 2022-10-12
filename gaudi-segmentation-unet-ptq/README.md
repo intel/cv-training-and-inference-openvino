@@ -6,7 +6,7 @@ This document contains instructions on how to run a model training and inference
     *	[Project Structure](#project-structure)
 *	Get Started
     *	[Step 1: Training](#training)
-    *	[Step 2: Inference](#inference/onnx-to-ir-optimization)
+    *	[Step 2: Inference](#inference)
 * References
     *	[References](#references)
 
@@ -25,7 +25,7 @@ This AI workflow demonstartes the following: <br />
 ```
 
 ## Training
-[GoTo Training section](training)
+[GoTo Training section](https://github.com/intel/cv-training-and-inference-openvino/tree/main/gaudi-segmentation-unet-ptq/training#training)
 
 #### Option 1: Running training on 8 HPUs using Docker containers.
 [GoTo Docker containers](https://github.com/intel/cv-training-and-inference-openvino/blob/main/gaudi-segmentation-unet-ptq/training#option-1-running-training-on-8-hpus-using-docker-containers)
@@ -33,7 +33,7 @@ This AI workflow demonstartes the following: <br />
 [GoTo Helm chart](https://github.com/intel/cv-training-and-inference-openvino/blob/main/gaudi-segmentation-unet-ptq/training#option-2-running-training-on-8-hpus-with-helm-chart-using-kubernetes)
 
 ## Inference
-[GoTo Inference section](inference/onnx-to-ir-optimization)
+[GoTo Inference section](https://github.com/intel/cv-training-and-inference-openvino/tree/main/gaudi-segmentation-unet-ptq/inference/onnx-to-ir-optimization#inference)
 #### Option 1: Running optimization and inference using Docker containers.
 [GoTo Docker containers](https://github.com/intel/cv-training-and-inference-openvino/blob/main/gaudi-segmentation-unet-ptq/inference/onnx-to-ir-optimization#option-1-running-optimization-and-inference-using-docker-containers)
 #### Option 2: Running optimization and inference with Helm chart using Kubernetes.
