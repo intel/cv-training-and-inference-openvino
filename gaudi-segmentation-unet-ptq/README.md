@@ -27,21 +27,21 @@ This AI workflow demonstartes the following: <br />
 ## Training
 [GoTo Training section](https://github.com/intel/cv-training-and-inference-openvino/tree/main/gaudi-segmentation-unet-ptq/training#training)
 
-#### Option 1: Running training on 8 HPUs using Docker containers.
+#### Option 1: Training on 8 HPUs using Docker containers.
 [GoTo Docker containers](https://github.com/intel/cv-training-and-inference-openvino/blob/main/gaudi-segmentation-unet-ptq/training#option-1-running-training-on-8-hpus-using-docker-containers)
-#### Option 2: Running training on 8 HPUs with Helm Chart using Kubernetes.
+#### Option 2: Training on 8 HPUs with Helm Chart using Kubernetes.
 [GoTo Helm chart](https://github.com/intel/cv-training-and-inference-openvino/blob/main/gaudi-segmentation-unet-ptq/training#option-2-running-training-on-8-hpus-with-helm-chart-using-kubernetes)
 
 ## Inference
 [GoTo Inference section](https://github.com/intel/cv-training-and-inference-openvino/tree/main/gaudi-segmentation-unet-ptq/inference/onnx-to-ir-optimization#inference)
-#### Option 1: Running optimization and inference using Docker containers.
+#### Option 1: Optimization for inferencing using Docker containers.
 [GoTo Docker containers](https://github.com/intel/cv-training-and-inference-openvino/blob/main/gaudi-segmentation-unet-ptq/inference/onnx-to-ir-optimization#option-1-running-optimization-and-inference-using-docker-containers)
-#### Option 2: Running optimization and inference with Helm chart using Kubernetes.
+#### Option 2: Optimization and inferencing with Helm Chart using Kubernetes.
 [GoTo Helm chart](https://github.com/intel/cv-training-and-inference-openvino/blob/main/gaudi-segmentation-unet-ptq/inference/onnx-to-ir-optimization#option-2-running-optimization-and-inference-with-helm-chart-using-kubernetes)
 
 ## References
 [HabanaAI/Model-References](https://github.com/HabanaAI/Model-References/tree/master/PyTorch/computer_vision/segmentation/Unet) <br />
-[Model used - NVIDIA's nnUNet](https://github.com/NVIDIA/DeepLearningExamples/tree/2b20ca80cf7f08585e90a11c5b025fa42e4866c8/PyTorch/Segmentation/nnUNet). <br />
+[Model used - NVIDIA nnUNet](https://github.com/NVIDIA/DeepLearningExamples/tree/2b20ca80cf7f08585e90a11c5b025fa42e4866c8/PyTorch/Segmentation/nnUNet). <br />
 [IntelAI/unet](https://github.com/IntelAI/unet) <br />
 [Habana Model Performance Data page](https://developer.habana.ai/resources/habana-training-models/#performance) <br />
 [developer.habana.ai](https://developer.habana.ai/resources) <br />

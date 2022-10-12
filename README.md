@@ -1,5 +1,5 @@
 # cv-training-and-inference-openvino  
-This repository contains Computer Vision use cases built using Intel's different AI components with a focus on the OpenVINO™ toolkit. Each use case is supported with detailed documentation present in the respective folder.
+This repository contains computer vision use cases built using Intel's different AI components with a focus on the OpenVINO™ toolkit. Each use case is supported with detailed documentation present in the respective folder.
   
   
 

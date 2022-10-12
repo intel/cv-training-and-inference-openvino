@@ -41,7 +41,7 @@ Change working directory to training folder:
 cd cv-training-and-inference-openvino/gaudi-segmentation-unet-ptq/training
 ```
 
-## Option 1: Running training on 8 HPUs using Docker containers.
+## Option 1: Training on 8 HPUs using Docker containers.
 
 ### 1. **Sample configuration <font color="green">config/config.yaml**</font>
 - To understand config file structure, refer to [config](./config.md)
@@ -155,7 +155,7 @@ Cloning Model-References
 
 ```
 
-## Option 2: Running training on 8 HPUs with Helm Chart using Kubernetes.
+## Option 2: Training on 8 HPUs with Helm Chart using Kubernetes.
 This section of the document details on how to deploy the application to a **K3S cluster** with a **Helm chart**.
 
 The directory `./training/` from this repository itself is a Helm chart and has all the required files pre-configured to deploy the application to a kubernetes cluster.
@@ -237,7 +237,7 @@ Note: Above command will build an image naming training_container to the host sy
 
 #### 4. Update the 'values.yaml' file:  
 
-1. Update the `<absolute-path-of-chart-directory>` field under mountpath: of 'values.yaml' file (present in the `./training/` directory) with the absolute path to the `./training/` directory. Note that, relative paths do not work with helm.
+1. Update the `<absolute-path-of-chart-directory>` field under mountpath: of 'values.yaml' file (present in the `./training/` directory) with the absolute path to the `./training/` directory. Note that, relative paths do not work with Helm.
 
 2. Note that registry and name field under image: of 'values.yaml' file are already preconfigured to work with default values. Change these field if you have configured your registry in a different way.  
 
