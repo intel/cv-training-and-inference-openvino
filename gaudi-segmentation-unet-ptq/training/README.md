@@ -62,7 +62,7 @@ cd cv-training-and-inference-openvino/gaudi-segmentation-unet-ptq/training
         data: /data
         results: /data
     train:
-        8hpu_train:
+        fp32_8hpu_training:
                 affinity: disabled
                 data: /data/01_2d
                 deep_supervision: ''
@@ -116,6 +116,8 @@ To view the dynamic logging from log file, run "tail -f <log_file>"
     Loading Habana® modules from /usr/local/lib/python3.8/dist-packages/habana_frameworks/torch/lib
     Epoch 0:   0%|          | 0/61 [00:00<?, ?it/s]
 ```
+**Note:<br/> 
+Sometimes we observe the epoch progress bar stuck at 0% for a while or a sudden percentage jump in the progress bar instead of smooth progress. This behavior is due to the distribution of training processes across multiple HPUs, and one can confirm this by running hl-smi command.<br/><br/>**
 Additionally, you can run `hl-smi` command with sudo/root access in another terminal to get proper information. This command returns the list of Gaudi® processors and workloads using them.
 For more details on this, visit to [hl-smi tool](https://docs.habana.ai/en/latest/Management_and_Monitoring/System_Management_Tools_Guide/System_Management_Tools.html)
 
