@@ -116,10 +116,9 @@ To view the dynamic logging from log file, run "tail -f <log_file>"
     Loading Habana® modules from /usr/local/lib/python3.8/dist-packages/habana_frameworks/torch/lib
     Epoch 0:   0%|          | 0/61 [00:00<?, ?it/s]
 ```
-**Note:<br/> 
-Sometimes we observe the epoch progress bar stuck at 0% for a while or a sudden percentage jump in the progress bar instead of smooth progress. This behavior is due to the distribution of training processes across multiple HPUs, and one can confirm this by running hl-smi command.<br/><br/>**
-Additionally, you can run `hl-smi` command with sudo/root access in another terminal to get proper information. This command returns the list of Gaudi® processors and workloads using them.
-For more details on this, visit to [hl-smi tool](https://docs.habana.ai/en/latest/Management_and_Monitoring/System_Management_Tools_Guide/System_Management_Tools.html)
+**Note:**<br/>
+At times during the model training, it is observed that the epoch progress bar is stuck at 0% for a while or there is a sudden percentage jump in the progress bar instead of steady progress. This behavior is due to the distribution of training processes across multiple HPUs and one can confirm this by running `hl-smi` command with sudo/root access in another terminal to get proper information. This command returns the list of Gaudi® processors and workloads using them. <br/>
+For more details on this, visit to [hl-smi tool](https://docs.habana.ai/en/latest/Management_and_Monitoring/System_Management_Tools_Guide/System_Management_Tools.html) <br/>
 
 ## Results
 Final converted models will be stored directly under the training folder.<br/>
