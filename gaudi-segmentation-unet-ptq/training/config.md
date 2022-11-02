@@ -71,7 +71,7 @@ Convert supports two formats: onnx (onnx format) and pt(pytorch model)
 Final converted models will be stored directly under the training folder.<br/>
 ```
 e.g.
-.../frameworks.ai.edgecsp.habana-training-ov-inference/training$ ls *.onnx
+.../gaudi-segmentation-unet-ptq/training$ ls *.onnx
 
 unet2d.onnx
 ```
