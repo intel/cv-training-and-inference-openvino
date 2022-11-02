@@ -102,11 +102,11 @@ In order to execute the specific task, the corresponding individual script which
 User can find the console logs in shell in which the training is triggered.<br/>
 Also individual logs for each task are captured under logs folder with timestamp.<br/>
 ```
-[e.g. <WORKING_DIR>/frameworks.ai.edgecsp.habana-training-ov-inference/training/logs]
+[e.g. <WORKING_DIR>/gaudi-segmentation-unet-ptq/training/logs]
 ```
 To view the dynamic logging from log file, run "tail -f <log_file>"
 ```
-.../frameworks.ai.edgecsp.habana-training-ov-inference/training/logs$ tail -f training_2022-30-09__02h08m49s.log
+.../gaudi-segmentation-unet-ptq/training/logs$ tail -f training_2022-30-09__02h08m49s.log
 
     Number of examples: Train 387 - Val 97
     Filters: [32, 64, 128, 256, 512, 512],
@@ -124,7 +124,7 @@ For more details on this, visit to [hl-smi tool](https://docs.habana.ai/en/lates
 Final converted models will be stored directly under the training folder.<br/>
 ```
 e.g.
-.../frameworks.ai.edgecsp.habana-training-ov-inference/training$ ls *.onnx
+.../gaudi-segmentation-unet-ptq/training$ ls *.onnx
 
 unet2d.onnx
 ```
