@@ -1,4 +1,4 @@
-## An AWS cloud based generic AI Workflow which showcase model training on Habana® Gaudi® Processor using Amazon EC2 DL1 instance, followed by optimization and inference on  Intel® hardware using the OpenVINO™ toolkit.
+## An AWS cloud based generic AI Workflow which showcases model training on Habana® Gaudi® Processor using Amazon EC2 DL1 instance, followed by optimization and inference on  Intel® hardware using the OpenVINO™ toolkit.
 This document contains instructions on how to run a model training and inference pipeline with Docker and Helm.
 
 *	Introduction
